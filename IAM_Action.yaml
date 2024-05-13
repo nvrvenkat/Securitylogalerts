@@ -1,0 +1,25 @@
+resources:
+- name: alert-policy
+  type: gcp-types/monitoring-v3:projects.alertPolicies
+  properties:
+    displayName: IAM_Action
+    combiner: OR
+    conditions:
+    - displayName: IAM_Action
+      conditionThreshold:
+        filter: 'metric.type="logging.googleapis.com/user/IAM_Action" AND resource.type="global"'
+        duration: 0s
+        comparison: COMPARISON_GT
+        aggregations:
+        - alignmentPeriod: 600s
+          perSeriesAligner: ALIGN_DELTA
+          crossSeriesReducer: REDUCE_SUM
+    userLabels:
+      foo: bar
+    alertStrategy:
+      autoClose: "604800s"
+    enabled: true
+    notificationChannels:
+      - "$(cat output.txt)"
+    severity: SEVERITY_UNSPECIFIED
+

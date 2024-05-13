@@ -1,0 +1,122 @@
+resources:
+- name: assign-resource-to-billing-account-metric
+  type: gcp-types/logging-v2:projects.metrics
+  properties:
+    metric: AssignResourceToBillingAccount
+    filter: protoPayload.methodName="AssignResourceToBillingAccount"
+    metricDescriptor:
+      metricKind: DELTA
+      valueType: INT64
+
+- name: create-service-account-key-metric
+  type: gcp-types/logging-v2:projects.metrics
+  properties:
+    metric: Create_Service_account_Key
+    filter: protoPayload.methodName="google.iam.admin.v1.CreateServiceAccountKey"
+    metricDescriptor:
+      metricKind: DELTA
+      valueType: INT64
+
+- name: deletion-protection-metric
+  type: gcp-types/logging-v2:projects.metrics
+  properties:
+    metric: delete_protection
+    filter: >
+      resource.type="gce_instance"
+      protoPayload.methodName="v1.compute.instances.setDeletionProtection"
+      protoPayload.request.deletionProtection="false"
+    metricDescriptor:
+      metricKind: DELTA
+      valueType: INT64
+
+- name: delete-service-account-key-metric
+  type: gcp-types/logging-v2:projects.metrics
+  properties:
+    metric: Delete_Service_account_key
+    filter: protoPayload.methodName="google.iam.admin.v1.DeleteServiceAccountKey"
+    metricDescriptor:
+      metricKind: DELTA
+      valueType: INT64
+
+- name: disk-deletion-metric
+  type: gcp-types/logging-v2:projects.metrics
+  properties:
+    metric: Disk_deletion
+    filter: >
+      resource.type="gce_disk"
+      protoPayload.methodName="v1.compute.disks.delete"
+    metricDescriptor:
+      metricKind: DELTA
+      valueType: INT64
+
+- name: firewall-update-metric
+  type: gcp-types/logging-v2:projects.metrics
+  properties:
+    metric: Firewall_Update
+    filter: >
+      protoPayload.methodName="v1.compute.firewalls.patch"
+      resource.type="gce_firewall_rule"
+    metricDescriptor:
+      metricKind: DELTA
+      valueType: INT64
+
+- name: iam-action-metric
+  type: gcp-types/logging-v2:projects.metrics
+  properties:
+    metric: IAM_Action
+    filter: protoPayload.serviceName="iam.googleapis.com"
+    metricDescriptor:
+      metricKind: DELTA
+      valueType: INT64
+
+- name: instance-delete-metric
+  type: gcp-types/logging-v2:projects.metrics
+  properties:
+    metric: Instance_Delete
+    filter: >
+      resource.type="gce_instance"
+      protoPayload.methodName="v1.compute.instances.delete"
+    metricDescriptor:
+      metricKind: DELTA
+      valueType: INT64
+
+- name: instance-insert-metric
+  type: gcp-types/logging-v2:projects.metrics
+  properties:
+    metric: Instance_Insert
+    filter: protoPayload.methodName="beta.compute.instances.insert"
+    metricDescriptor:
+      metricKind: DELTA
+      valueType: INT64
+
+- name: label-modification-metric
+  type: gcp-types/logging-v2:projects.metrics
+  properties:
+    metric: Label_modification
+    filter: >
+      resource.type="gce_instance"
+      protoPayload.methodName="v1.compute.instances.setLabels"
+    metricDescriptor:
+      metricKind: DELTA
+      valueType: INT64
+
+- name: service-account-creation-metric
+  type: gcp-types/logging-v2:projects.metrics
+  properties:
+    metric: Service_Account_Creation
+    filter: >
+      resource.type="service_account"
+      protoPayload.methodName="google.iam.admin.v1.CreateServiceAccount"
+    metricDescriptor:
+      metricKind: DELTA
+      valueType: INT64
+
+- name: set-iam-metric
+  type: gcp-types/logging-v2:projects.metrics
+  properties:
+    metric: Set_IAM
+    filter: protoPayload.methodName="SetIamPolicy"
+    metricDescriptor:
+      metricKind: DELTA
+      valueType: INT64
+
