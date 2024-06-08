@@ -1,10 +1,19 @@
 #!/bin/bash
 
-# Run the gcloud command and store the output in output.txt
-gcloud beta monitoring channels list --format="value(name)" > output.txt
+# Define the display name of the required notification channel
+required_channel="ACT-MS-alerts"
 
-# Read the content of output.txt
-channel_id=$(cat output.txt)
+# Fetch the notification channel ID for the required display name
+channel_id=$(gcloud beta monitoring channels list --format="value(name)" --filter="displayName=\"$required_channel\"")
+
+# Check if the channel_id is not empty
+if [ -z "$channel_id" ]; then
+    echo "Error: Notification channel for '$required_channel' not found."
+    exit 1
+fi
+
+# Store the channel ID in output.txt
+echo "$channel_id" > output.txt
 
 # Array of YAML files
 yaml_files=(
