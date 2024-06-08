@@ -1,0 +1,7 @@
+gcloud projects add-iam-policy-binding $project_name \
+    --member="user:username@mail.com" \
+    --role="roles/viewer"
+    
+    gcloud projects remove-iam-policy-binding $project_name \
+    --member="user:username@mail.com" \
+    --role="roles/viewer"
