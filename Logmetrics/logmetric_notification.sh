@@ -3,7 +3,7 @@
 # Define variables
 DISPLAY_NAME="ACT-MS-alerts"
 DESCRIPTION="Notification channel for ACT-MS alerts"
-EMAIL_ADDRESS="venkatraman.nagarajan@ankercloud.com"
+EMAIL_ADDRESS="mail-id"
 
 # Create the notification channel
 gcloud beta monitoring channels create \
